@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+///////////////// variable
+
+let pseudo;
+
+///////////////// fonction
+
+/**
+ * retourne un nombre aléatoire comprit entre les nombres entrer
+ * en paramettre min et max 
+ * 
+ * @author L.Jonathan 
+ * @param {number} min nombre minimun
+ * @param {number} max nombre maximun
+ * 
+ * @returns {number} result
+ */
+function rand2(min, max) {
+    let result = Math.round(Math.random() * (max - min)) + min;
+    return result;
+}
+
+/**
+ * demander le pseudonyme à l'utilisateur
+ * 
+ * @author L.Jonathan 
+ * @returns string
+ */
+function demandePseudo() {
+    return prompt('Entrez votre pseudo : ');
+}
+
+/**
+ * compte le nombre de voyelle compris dans le mot
+ * 
+ * @author L.Jonathan 
+ * @param {string} word le mot qui sera compter
+ * @returns {number} voyelle - le nombre de voyelle compris dans le mot
+ */
+function compteVoyelles(word) {
+    let voyelle = word.replace(/[^aeiouy]/ig, '').length;
+    return voyelle;
+}
+
+console.log(compteVoyelles('a ll'));
+
+/**
+ *  renvoie 1 en cas de pile et 0 en cas de face
+ * 
+ * @author L.Jonathan 
+ * @returns {number} 0 = face ou 1 = pile
+ */
+function pileOuFace() {
+    let rand = rand2(0,1)
+    return rand;
+}
+
+/**
+ * Demande au joueur de choisir 1 (pile) ou 0 (face)
+ * Teste que la saisie du joueur soit bien égal à 0 ou 1
+ * Lance aléatoirement une pièce
+ * Renvoie vrai si le joueur a correctement deviné, faux sinon
+ * 
+ * @author L.Jonathan 
+ * @returns {boolean} true|false
+ */
+function lancerPileOuFace() {
+    let choixUser = parseInt(prompt(' choisissez entre 1 (pile) ou 0 (face) : '));
+
+    while (isNaN(choixUser)) {
+        choixUser = parseInt(prompt('Entrez un chiffre entre 1 (pile) ou 0 (face) : '));
+    }
+    
+    let ordi = pileOuFace();
+    console.log('Moi : ' + choixUser + ' VS ' + ordi + ' Ordi');
+
+    if (choixUser === ordi) 
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+/**
+ * Le joueur démarre avec 3 chances
+ * Le joueur démarre avec un score à 0
+ * Tant que le joueur possède des chances, il peut retenter un lancer
+ * Si le joueur gagne un lancer, son score augmente, sinon ses chances baissent
+ * 
+ * @author L.Jonathan 
+ * @param {string} pseudo le nom du joeur
+ * 
+ * @returns {boolean} true|false
+ */
+function jeuPileOuFace(pseudo) {
+    let chances = 3, score = 0, win = false, loser = false;
+
+    chances = compteVoyelles(pseudo);
+    alert('vous avez ' + chances + ' chances');
+    
+    while (!win || !loser) 
+    {
+        let PileOuFace = lancerPileOuFace();
+
+        if (PileOuFace === true) {
+            score++;
+            console.log(pseudo + ' voici votre score : ' + score);
+        }
+        else if (PileOuFace === false) {
+            chances--;
+            console.log(pseudo + ' voici vos chances restant : ' + chances);
+            if (chances === 0 &amp;&amp; score >= 2) {
+                console.log('Vous avez gagné ' + pseudo + ' ! ');
+                console.log(pseudo + ' voici votre score : ' + score);
+                return win = true;
+            }
+            else if (chances === 0 &amp;&amp; score &lt; 2) {
+                console.log(pseudo + ' vous avez perdu ' + pseudo + ' ! ');
+                console.log(pseudo + ' voici votre score : ' + score);
+                return loser = true;
+            }
+        }
+    }
+}
+
+/**
+ * langer le jeu
+ * 
+ * @author L.Jonathan 
+ * @param {strin} pseudo nom du joueur
+ * @returns true|false
+ */
+function go (pseudo) 
+{
+    let confirme = confirm('voulez vous commencez le jeu ' + pseudo  +' ?');
+    
+    if(confirme === true)
+    {
+        let jeu = jeuPileOuFace(pseudo);
+
+        if (jeu) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return '';
+    }
+}
+
+/**
+ * la fonction lancée par votre code et appellera toutes les autres
+ * 
+ * @author L.Jonathan 
+ * @returns true|false
+ */
+function main() {
+    pseudo = demandePseudo();
+    return go(pseudo); 
+}
+
+///////////////// programme
+
+
+main();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#compteVoyelles">compteVoyelles</a></li><li><a href="global.html#demandePseudo">demandePseudo</a></li><li><a href="global.html#go">go</a></li><li><a href="global.html#jeuPileOuFace">jeuPileOuFace</a></li><li><a href="global.html#lancerPileOuFace">lancerPileOuFace</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#pileOuFace">pileOuFace</a></li><li><a href="global.html#rand2">rand2</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Sep 28 2020 15:19:49 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
