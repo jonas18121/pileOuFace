@@ -30,7 +30,12 @@ function rand2(min, max) {
  * @returns {string}
  */
 function demandePseudo() {
-    return prompt('Entrez votre pseudo : ');
+    let prom = prompt('Entrez votre pseudo : ');
+
+    while (prom === null || prom === undefined || prom === '') {
+        prom = prompt('Entrez votre pseudo : ');
+    }
+     return prom;
 }
 
 /**
@@ -162,7 +167,7 @@ function chanceUser(chances) {
  */
 function meilleurScor(score)
 {
-    console.log('score ' + score + ' VS meilleure' + meilleurScore);
+    console.log('score ' + score + ' VS meilleure ' + meilleurScore);
     if(score > meilleurScore )
     {
         meilleurScore = score;
