@@ -2,7 +2,8 @@
 
 ///////////////// variable
 
-let pseudo, meilleurScore;
+let pseudo; 
+var meilleurScore;
 let score = 0;
 
 ///////////////// fonction
@@ -26,7 +27,7 @@ function rand2(min, max) {
  * demander le pseudonyme à l'utilisateur
  * 
  * @author L.Jonathan 
- * @returns string
+ * @returns {string}
  */
 function demandePseudo() {
     return prompt('Entrez votre pseudo : ');
@@ -102,8 +103,6 @@ function jeuPileOuFace(pseudo, score) {
     chances = compteVoyelles(pseudo);
     alert('Selon le nombre de voyelles que vous avez dans vous nom, vous avez ' + chances + ' chances');
 
-    
-
     while (!win || !loser) 
     {
         let PileOuFace = lancerPileOuFace();
@@ -136,30 +135,46 @@ function jeuPileOuFace(pseudo, score) {
             }
         } 
     }
-    meilleurScore = meilleurScor(score); 
-    console.log(meilleurScore); 
+    
+    console.log(meilleurScor(score)); 
 }
 
+/**
+ * @param {number} score 
+ * @returns {number}
+ */
 function scoreUser(score){
     return ++score;
 }
 
+/**
+ * @param {number} chances 
+ * @returns {number}
+ */
 function chanceUser(chances) {
     return --chances;
 }
 
+/** affiche le meilleur scrore
+ * 
+ * @author L.Jonathan 
+ * @param {number} score 
+ * @returns {string}
+ */
 function meilleurScor(score)
 {
+    console.log('score ' + score + ' VS meilleure' + meilleurScore);
     if(score > meilleurScore )
     {
         meilleurScore = score;
-        console.log('voici votre nouveau meilleure score : ' + meilleurScore);
-        return 'voici votre nouveau meilleure score : ' + meilleurScore;
+        if ( meilleurScore) {
+            return 'voici votre nouveau meilleure score : ' + meilleurScore;
+        }
     }
-    else
-    {
-        console.log('votre meilleure score ' + meilleurScore);
-        return 'votre meilleure score ' + meilleurScore;
+    else{
+        if (meilleurScore >= 0) {
+            return 'votre meilleure score ' + meilleurScore;
+        }
     }
 }
 
@@ -168,7 +183,7 @@ function meilleurScor(score)
  * 
  * @author L.Jonathan 
  * @param {strin} pseudo nom du joueur
- * @returns true|false
+ * @returns {boolean} true|false
  */
 function go (pseudo) 
 {
@@ -183,7 +198,6 @@ function go (pseudo)
     
     if(confirme === true)
     {
-        
         let jeu = jeuPileOuFace(pseudo, score);
 
         if (jeu) {
@@ -202,7 +216,7 @@ function go (pseudo)
  * la fonction lancée par votre code et appellera toutes les autres
  * 
  * @author L.Jonathan 
- * @returns true|false
+ * @returns {boolean} true|false
  */
 function main() {
     pseudo = demandePseudo();
