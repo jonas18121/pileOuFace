@@ -31,9 +31,11 @@ function rand2(min, max) {
  */
 function demandePseudo() {
     let prom = prompt('Entrez votre pseudo : ');
+    prom = prom.trim();
 
     while (prom === null || prom === undefined || prom === '') {
         prom = prompt('Entrez votre pseudo : ');
+        prom = prom.trim();
     }
      return prom;
 }
