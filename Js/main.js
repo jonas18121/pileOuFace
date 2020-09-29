@@ -37,7 +37,7 @@ function demandePseudo() {
  * compte le nombre de voyelle compris dans le mot
  * 
  * @author L.Jonathan 
- * @param {string} word le mot qui sera compter
+ * @param {string} word - le mot qui sera compter
  * @returns {number} voyelle - le nombre de voyelle compris dans le mot
  */
 function compteVoyelles(word) {
@@ -135,11 +135,10 @@ function jeuPileOuFace(pseudo, score) {
             }
         } 
     }
-    
     console.log(meilleurScor(score)); 
 }
 
-/**
+/** le score augmente
  * @param {number} score 
  * @returns {number}
  */
@@ -147,7 +146,7 @@ function scoreUser(score){
     return ++score;
 }
 
-/**
+/** les chances diminue
  * @param {number} chances 
  * @returns {number}
  */
@@ -218,7 +217,8 @@ function go (pseudo)
  * @author L.Jonathan 
  * @returns {boolean} true|false
  */
-function main() {
+function main() 
+{
     pseudo = demandePseudo();
     meilleurScore = 0;
     return go(pseudo); 
