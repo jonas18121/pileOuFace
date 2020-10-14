@@ -2,9 +2,9 @@
 
 ///////////////// variable
 
-let pseudo; 
+var pseudo; 
 var meilleurScore;
-let score = 0;
+var score = 0;
 
 ///////////////// fonction
 
@@ -52,7 +52,7 @@ function compteVoyelles(word) {
     return voyelle;
 }
 
-console.log(compteVoyelles('a ll'));
+// console.log(compteVoyelles('a ll'));
 
 /**
  *  renvoie 1 en cas de pile et 0 en cas de face
@@ -149,7 +149,8 @@ function jeuPileOuFace(pseudo, score) {
  * @param {number} score 
  * @returns {number}
  */
-function scoreUser(score){
+function scoreUser(score)
+{
     return ++score;
 }
 
@@ -157,7 +158,8 @@ function scoreUser(score){
  * @param {number} chances 
  * @returns {number}
  */
-function chanceUser(chances) {
+function chanceUser(chances) 
+{
     return --chances;
 }
 
@@ -233,5 +235,7 @@ function main()
 
 ///////////////// programme
 
-
-main();
+document.addEventListener('DOMContentLoaded', function()
+{
+    main();
+});
